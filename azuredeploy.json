@@ -14,41 +14,11 @@
         "description": "Username for the Administrator of the VM"
       }
     },
-    "imagePublisher": {
-      "type": "string",
-      "defaultValue": "Canonical",
-      "metadata": {
-        "description": "Image Publisher"
-      }
-    },
-    "imageOffer": {
-      "type": "string",
-      "defaultValue": "UbuntuServer",
-      "metadata": {
-        "description": "Image Offer"
-      }
-    },
-    "imageSKU": {
-      "type": "string",
-      "defaultValue": "18.04-LTS",
-      "metadata": {
-        "description": "Image SKU"
-      },
-      "allowedValues": [
-        "14.04.5-LTS",
-        "16.04.0-LTS",
-        "18.04-LTS"
-      ]
-    },
     "vmDnsName": {
       "type": "string",
       "metadata": {
         "description": "DNS Name for the Public IP. Must be lowercase."
       }
-    },
-    "vmSize": {
-      "type": "string",
-      "defaultValue": "Standard_D4_V2"
     },
     "location": {
       "type": "string",
@@ -114,6 +84,10 @@
     "subnetName": "Subnet-1",
     "subnetPrefix": "10.0.0.0/24",
     "storageAccountType": "Standard_LRS",
+    "imagePublisher": "Canonical",
+    "imageOffer": "UbuntuServer",
+    "imageSKU": "18.04-LTS",
+    "vmSize": "Standard_D4_V2",
     "nsgName": "[concat(uniquestring(concat(resourceGroup().id, parameters('vmDnsName'))), '-nsg')]",
     "publicIPAddressName": "myPublicIP",
     "publicIPAddressType": "Dynamic",
@@ -264,7 +238,7 @@
       ],
       "properties": {
         "hardwareProfile": {
-          "vmSize": "[parameters('vmSize')]"
+          "vmSize": "[variables('vmSize')]"
         },
         "osProfile": {
           "computerName": "[variables('vmName')]",
@@ -274,9 +248,9 @@
         },
         "storageProfile": {
           "imageReference": {
-            "publisher": "[parameters('imagePublisher')]",
-            "offer": "[parameters('imageOffer')]",
-            "sku": "[parameters('imageSKU')]",
+            "publisher": "[variables('imagePublisher')]",
+            "offer": "[variables('imageOffer')]",
+            "sku": "[variables('imageSKU')]",
             "version": "latest"
           },
           "osDisk": {
