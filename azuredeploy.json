@@ -74,13 +74,6 @@
         "description": "SSH Key or password for the Virtual Machine. SSH key is recommended."
       }
     },
-    "adminUsername": {
-        "type": "string",
-        "defaultValue": "",
-        "metadata": {
-          "description": "User name for the Virtual Machine."
-        }
-      },
     "adminPassword": {
         "type": "securestring",
         "metadata": {
@@ -128,6 +121,7 @@
     "subnetName": "Subnet-1",
     "subnetPrefix": "10.0.0.0/24",
     "storageAccountType": "Standard_LRS",
+    "nsgName": "[concat(uniquestring(concat(resourceGroup().id, parameters('vmDnsName'))), '-nsg')]",
     "publicIPAddressName": "myPublicIP",
     "publicIPAddressType": "Dynamic",
     "vmName": "[parameters('vmDnsName')]",
