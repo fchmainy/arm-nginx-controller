@@ -1,7 +1,7 @@
 #!/bin/bash
 
-#sudo apt update
-#sudo apt install -y conntrack coreutils curl ebtables ethtool gettext grep gzip iproute2 iptables jq less openssl sed socat tar util-linux wget
+sudo apt update
+sudo apt install -y conntrack coreutils curl ebtables ethtool gettext grep gzip iproute2 iptables jq less openssl sed socat tar util-linux wget
 
 export CTR_SMTP_HOST='localhost'
 export CTR_SMTP_PORT='25'

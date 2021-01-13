@@ -1,71 +1,32 @@
 #cloud-config
-users:
-  - name: demo
-    passwd: $1$armtst02$SHETEVK95zPn.PYhNPWiR0
-    chpasswd: { expire: False }
-    ssh_pwauth: True
-    lock_passwd: false
-    groups: users
-    ssh-import-id: None
-  - name: insecure2
-    plain_text_passwd: secret
-    ssh_pwauth: True
-    lock_passwd: false
-    groups: users
-    ssh-import-id: None
-
-disk_setup:
-    /dev/sdc:
-        table_type: gpt
-        layout: True
-        overwrite: True
-    /dev/sdd:
-        table_type: gpt
-        layout:
-            - 75
-            - 25
-        overwrite: True
-fs_setup:
-    - device: /dev/sdc
-      partition: 1
-      filesystem: ext4
-    - device: /dev/sdd
-      partition: 1
-      filesystem: ext4
-    - device: /dev/sdd
-      partition: 2
-      filesystem: ext4
-
-mounts:
-    - ["/dev/sdc1", "/data/sdc1", auto, "defaults,noexec,rw,nofail"]
-    - ["/dev/sdd1", "/data/sdd1", auto, "defaults,noexec,rw,nofail"]
-    - ["/dev/sdd2", "/data/sdd2", auto, "defaults,noexec,rw,nofail"]
 
 package_update: true
 package_upgrade: true
 
 packages:
-  - nginx
+  - conntrack 
+  - coreutils 
+  - curl 
+  - ebtables 
+  - ethtool 
+  - gettext 
+  - grep 
+  - gzip 
+  - iproute2 
+  - iptables 
+  - jq 
+  - less 
+  - openssl 
+  - sed 
+  - socat 
+  - tar 
+  - util-linux 
+  - wget
 
 snap:
     commands:
         00: [snap, install, powershell, '--classic']
 
-write_files:
-  - path: /home/demo/example
-    content: |
-      Example content.
-  - path: /var/www/html/index.html
-    content: |
-      <html>
-      <head><title>Hello world</title></head>
-      <body>Hello world!</body>
-      </html>
-  - path: /tmp/content.txt
-    content: |
-      Text
-      content
-      here.      
 
 preserve_sources_list: true
 apt:
@@ -94,7 +55,4 @@ apt:
                  -----END PGP PUBLIC KEY BLOCK-----
 
 runcmd:
-  - [rm, /var/www/html/index.nginx-debian.html]
-  - [chmod, -R, 775, /var/www/html]
-  - [chown, -R, 'demo:demo', /home/demo/example]
-  - [mv, '/tmp/content.txt', '/data/sdd2/content.txt']
+  - [cd, controller-installer]
