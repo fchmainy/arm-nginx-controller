@@ -1,7 +1,15 @@
 #!/bin/bash
 
+
+sudo apt install apt-transport-https ca-certificates curl software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+sudo apt install docker-ce
+
 sudo apt update
 sudo apt install -y conntrack coreutils curl ebtables ethtool gettext grep gzip iproute2 iptables jq less openssl sed socat tar util-linux wget
+
+
 
 export CTR_SMTP_HOST='localhost'
 export CTR_SMTP_PORT='25'
