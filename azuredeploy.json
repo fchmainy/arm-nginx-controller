@@ -94,26 +94,19 @@
           "description": "Controller FQDN"
         }
       },
+    "userEmail": {
+        "type": "string",
+        "defaultValue": "",
+        "metadata": {
+          "description": "User Email Address for controller"
+        }
+      },
     "restrictedSrcAddress": {
             "metadata": {
                 "description": "This field restricts management access to a specific network or address. Enter an IP address or address range in CIDR notation, or asterisk for all sources"
             },
             "type": "string"
-        },
-    "_artifactsLocation": {
-      "type": "string",
-      "metadata": {
-        "description": "The base URI where artifacts required by this template are located. When the template is deployed using the accompanying scripts, a private location in the subscription will be used and this value will be automatically generated."
-      },
-      "defaultValue": "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/django-app/"
-    },
-    "_artifactsLocationSasToken": {
-      "type": "securestring",
-      "metadata": {
-        "description": "The sasToken required to access _artifactsLocation.  When the template is deployed using the accompanying scripts, a sasToken will be automatically generated."
-      },
-      "defaultValue": ""
-    }
+        }
   },
   "variables": {
     "nicName": "myVMNic",
@@ -318,7 +311,7 @@
           "fileUris": [
             "https://raw.githubusercontent.com/fchmainy/arm-nginx-controller/main/install-controller.sh"
           ],
-          "commandToExecute": "[concat('sudo sh install-controller.sh ', ' ', parameters('controllerTarBallURL'), ' ', parameters('controller_fqdn'), ' ', parameters('adminUsername'), ' ', parameters('adminPassword'))]"
+          "commandToExecute": "[concat('sudo sh install-controller.sh ', ' ', parameters('controllerTarBallURL'), ' ', parameters('controller_fqdn'), ' ', parameters('adminUsername'), ' ', parameters('adminPassword'), ' ', parameters('userEmail'))]"
         }
       }
     }
