@@ -36,9 +36,37 @@
           "description": "Password for the Virtual Machine."
         }
       },
+      "controllerTarBallURL": {
+        "type": "string",
+        "defaultValue": "",
+        "metadata": {
+          "description": "URL pointing to the controller .tar.gz. to install"
+        }
+      },
+      "nginx-repo_crt": {
+        "type": "string",
+        "defaultValue": "",
+        "metadata": {
+          "description": "URL pointing to the nginx-repo.crt file"
+        }
+      },
+      "nginx-repo_key": {
+        "type": "string",
+        "defaultValue": "",
+        "metadata": {
+          "description": "URL pointing to the nginx-repo.key file"
+        }
+      },
+      "controller_fqdn": {
+        "type": "string",
+        "defaultValue": "",
+        "metadata": {
+          "description": "Controller FQDN"
+        }
+      },
       "vmSize": {
         "type": "string",
-        "defaultValue": "Standard_D1",
+        "defaultValue": "Standard_D4_v2",
         "metadata": {
           "description": "VM size"
         }
@@ -316,6 +344,33 @@
           }
         }
       },
+      {
+        "apiVersion": "2015-06-15",
+        "type": "extensions",
+        "name": "install-controller",
+        "location": "[resourceGroup().location]",
+        "dependsOn": [
+            "[concat('Microsoft.Compute/virtualMachines/', concat(variables('vmName'),copyindex()))]"
+        
+        ],
+        "tags": {
+            "displayName": "install-controller"
+          },
+        "properties": {
+            "publisher": "Microsoft.Azure.Extensions",
+            "type": "CustomScript",
+            "typeHandlerVersion": "2.0",
+            "autoUpgradeMinorVersion": true,
+            "settings": {
+              "fileUris": [
+                "https://raw.githubusercontent.com/fchmainy/arm-nginx-controller/main/install-controller.sh"
+              ]
+            },
+            "protectedSettings": {
+              "commandToExecute": "[concat('sudo sh install-controller.sh ', ' ', parameters('controllerTarBallURL'), ' ', parameters('controller_fqdn'), ' ', parameters('adminUsername'), ' ', parameters('adminPassword'))]"
+            }
+          }
+        },
       {
         "apiVersion": "2015-06-15",
         "type": "Microsoft.Compute/virtualMachines/extensions",
