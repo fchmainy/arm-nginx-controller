@@ -316,9 +316,9 @@
         "autoUpgradeMinorVersion": true,
         "settings": {
           "fileUris": [
-            "[uri(parameters('_artifactsLocation'), concat('install_django.sh', parameters('_artifactsLocationSasToken')))]"
+            "[uri(parameters('_artifactsLocation'), concat('install-controller.sh', parameters('_artifactsLocationSasToken')))]"
           ],
-          "commandToExecute": "[concat('sh install_django.sh ', parameters('vmDnsName'))]"
+          "commandToExecute": "[concat('sudo sh install-controller.sh ', ' ', parameters('controllerTarBallURL'), ' ', parameters('controller_fqdn'), ' ', parameters('adminUsername'), ' ', parameters('adminPassword'))]"
         }
       }
     }
