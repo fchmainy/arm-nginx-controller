@@ -316,7 +316,7 @@
         "autoUpgradeMinorVersion": true,
         "settings": {
           "fileUris": [
-            "[uri(parameters('_artifactsLocation'), concat('install-controller.sh', parameters('_artifactsLocationSasToken')))]"
+            "https://raw.githubusercontent.com/fchmainy/arm-nginx-controller/main/install-controller.sh"
           ],
           "commandToExecute": "[concat('sudo sh install-controller.sh ', ' ', parameters('controllerTarBallURL'), ' ', parameters('controller_fqdn'), ' ', parameters('adminUsername'), ' ', parameters('adminPassword'))]"
         }
