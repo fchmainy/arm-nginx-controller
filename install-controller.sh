@@ -10,11 +10,11 @@ sudo apt update
 sudo apt install -y conntrack coreutils curl ebtables ethtool gettext grep gzip iproute2 iptables jq less openssl sed socat tar util-linux wget
 
 
-su -u $3 -s
 wget $1 -O /home/$3/controller.tar.gz
 cd /home/$3
 tar -xvf controller.tar.gz
 chown -R $3 controller-installer
+su $3
 cd controller-installer/
 
 export CTR_SMTP_HOST='localhost'
