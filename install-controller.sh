@@ -8,13 +8,6 @@ sudo apt install -y docker-ce
 sudo apt update
 sudo apt install -y conntrack coreutils curl ebtables ethtool gettext grep gzip iproute2 iptables jq less openssl sed socat tar util-linux wget
 
-whoami
-pwd
-echo $1
-echo $2
-echo $3
-echo $4
-echo $5
 # $1: parameters('controllerTarBallURL'),
 # $2: parameters('controller_fqdn'), 
 # $3: parameters('adminUsername'), 
