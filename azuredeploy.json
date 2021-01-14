@@ -77,6 +77,13 @@
           "description": "User Email Address for controller"
         }
       },
+    "controllerLicense": {
+        "type": "string",
+        "defaultValue": "",
+        "metadata": {
+          "description": "Association Token for Controller Licensing"
+        }
+      },
     "restrictedSrcAddress": {
             "metadata": {
                 "description": "This field restricts management access to a specific network or address. Enter an IP address or address range in CIDR notation, or asterisk for all sources"
@@ -266,7 +273,7 @@
           "fileUris": [
             "https://raw.githubusercontent.com/fchmainy/arm-nginx-controller/main/install-controller.sh"
           ],
-          "commandToExecute": "[concat('sudo sh install-controller.sh ', ' ', parameters('controllerTarBallURL'), ' ', parameters('controller_fqdn'), ' ', parameters('adminUsername'), ' ', parameters('adminPassword'), ' ', parameters('userEmail'))]"
+          "commandToExecute": "[concat('sudo sh install-controller.sh ', ' ', parameters('controllerTarBallURL'), ' ', parameters('controller_fqdn'), ' ', parameters('adminUsername'), ' ', parameters('adminPassword'), ' ', parameters('userEmail'), ' ', parameters('controllerLicense'))]"
         }
       }
     }
