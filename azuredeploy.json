@@ -2,18 +2,6 @@
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "adminUsername": {
-      "type": "string",
-      "metadata": {
-        "description": "Username for the Administrator of the VM"
-      }
-    },
-    "vmDnsName": {
-      "type": "string",
-      "metadata": {
-        "description": "DNS Name for the Public IP. Must be lowercase."
-      }
-    },
     "virtualNetworkName": {
       "type": "string",
       "metadata": {
@@ -26,11 +14,23 @@
         "description": "Name of the Subnet where is located the private NIC of the Controller."
       }
     },
+    "vmDnsName": {
+      "type": "string",
+      "metadata": {
+        "description": "DNS Name for the Public IP. Must be lowercase."
+      }
+    },
     "location": {
       "type": "string",
       "defaultValue": "[resourceGroup().location]",
       "metadata": {
         "description": "Location for all resources."
+      }
+    },
+    "adminUsername": {
+      "type": "string",
+      "metadata": {
+        "description": "Username for the Administrator of the VM"
       }
     },
     "authenticationType": {
